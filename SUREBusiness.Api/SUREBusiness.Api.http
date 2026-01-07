@@ -1,0 +1,98 @@
+﻿### Auto's ophalen (alle, gepagineerd)
+GET https://localhost:7001/api/cars
+Accept: application/json
+
+###
+
+### Auto's filteren op status = Beschikbaar
+GET https://localhost:7001/api/cars?status=Available&pageSize=10
+Accept: application/json
+
+###
+
+### Auto's filteren op huidige bezitter
+GET https://localhost:7001/api/cars?currentHolder=Jan%20Jansen
+Accept: application/json
+
+###
+
+### Auto ophalen op ID (vervang 1 door echt ID na toevoegen)
+GET https://localhost:7001/api/cars/1
+
+###
+
+### Auto toevoegen (met geldig kenteken voor RDW validatie)
+POST https://localhost:7001/api/cars
+Content-Type: application/json
+
+{
+  "licensePlate": "1-KGP-86",
+  "color": "Blauw",
+  "buildYear": 2022,
+  "remarks": ["Nieuwe leaseauto", "Automaat"]
+}
+
+###
+
+### Auto toevoegen (fout: ongeldig kenteken → wordt geweigerd)
+POST https://localhost:7001/api/cars
+Content-Type: application/json
+
+{
+  "licensePlate": "XXX-99-YYY",
+  "color": "Rood",
+  "buildYear": 2023
+}
+
+###
+
+### Auto bijwerken: uitlenen aan persoon
+PUT https://localhost:7001/api/cars/5
+Content-Type: application/json
+
+{
+  "borrowedTo": "Kees de Vries",
+  "remarksToAdd": ["Uitgeleend voor project X"]
+}
+
+###
+
+### Auto bijwerken: terugbrengen
+PUT https://localhost:7001/api/cars/5
+Content-Type: application/json
+
+{
+  "borrowedTo": ""
+}
+
+###
+
+### Auto bijwerken: status naar Verkocht
+PUT https://localhost:7001/api/cars/10
+Content-Type: application/json
+
+{
+  "status": "Sold",
+  "remarksToAdd": ["Verkocht aan klant"]
+}
+
+###
+
+### Auto bijwerken: opmerking toevoegen + kleur wijzigen
+PUT https://localhost:7001/api/cars/3
+Content-Type: application/json
+
+{
+  "color": "Zwart",
+  "remarksToAdd": ["APK goedgekeurd", "Banden vervangen"]
+}
+
+###
+
+### Probeer status wijzigen van een verkochte auto (mislukt)
+PUT https://localhost:7001/api/cars/10
+Content-Type: application/json
+
+{
+  "status": "Available"
+}

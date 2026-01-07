@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="readme.md" />
+  </Folder>
+  <Project Path="SUREBusiness.Api.Tests/SUREBusiness.Api.Tests.csproj" />
+  <Project Path="SUREBusiness.Api/SUREBusiness.Api.csproj" />
+  <Project Path="SUREBusiness.Core.Common/SUREBusiness.Core.Common.csproj" />
+  <Project Path="SUREBusiness.Core.Tests/SUREBusiness.Core.Tests.csproj" />
+  <Project Path="SUREBusiness.Core/SUREBusiness.Core.csproj" />
+  <Project Path="SUREBusiness.Infrastructure.Tests/SUREBusiness.Infrastructure.Tests.csproj" />
+  <Project Path="SUREBusiness.Infrastructure/SUREBusiness.Infrastructure.csproj" />
+</Solution>
