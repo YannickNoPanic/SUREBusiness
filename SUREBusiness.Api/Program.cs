@@ -9,23 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 // Laag-specifieke registraties
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration, builder.Environment.IsDevelopment());
 builder.Services.AddCore(builder.Configuration);
-
-// DbContext – override met SQLite in development (makkelijkst voor beoordeling!)
-var connectionString = builder.Configuration.GetConnectionString("SUREDB");
-
-builder.Services.AddDbContext<SUREDbContext>(options =>
-{
-    if (builder.Environment.IsDevelopment())
-    {
-        options.UseSqlite(connectionString);
-    }
-    else
-    {
-        options.UseSqlServer(connectionString);
-    }
-});
 
 var app = builder.Build();
 

@@ -14,11 +14,20 @@ namespace SUREBusiness.Infrastructure;
 public static class Configure
 {
     public static IServiceCollection AddInfrastructure(
-        this IServiceCollection services,
-        IConfiguration configuration)
+    this IServiceCollection services,
+    IConfiguration configuration,
+    bool dev)
     {
+        var cs = configuration.GetConnectionString("SUREDB");
+
         services.AddDbContext<SUREDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("SUREDB"))); // default fallback
+        {
+            if (dev)
+                options.UseSqlite(cs);
+            else
+                options.UseSqlServer(cs);
+        });
+
         services.AddRepositories();
         services.AddQueries();
         services.AddServices(configuration);
@@ -43,7 +52,5 @@ public static class Configure
             client.BaseAddress = new Uri("https://opendata.rdw.nl/");
             client.Timeout = TimeSpan.FromSeconds(10);
         });
-
-        services.AddScoped<ILicensePlateValidator, RdwLicensePlateValidator>();
     }
 }

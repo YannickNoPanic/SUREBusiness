@@ -1,28 +1,30 @@
-﻿### Auto's ophalen (alle, gepagineerd)
-GET https://localhost:7001/api/cars
+﻿@host=https://localhost:7197
+
+### Auto's ophalen (alle, gepagineerd)
+GET {{host}}/api/cars
 Accept: application/json
 
 ###
 
 ### Auto's filteren op status = Beschikbaar
-GET https://localhost:7001/api/cars?status=Available&pageSize=10
+GET {{host}}/api/cars?status=Available&pageSize=10
 Accept: application/json
 
 ###
 
 ### Auto's filteren op huidige bezitter
-GET https://localhost:7001/api/cars?currentHolder=Jan%20Jansen
+GET {{host}}/api/cars?currentHolder=Jan%20Jansen
 Accept: application/json
 
 ###
 
 ### Auto ophalen op ID (vervang 1 door echt ID na toevoegen)
-GET https://localhost:7001/api/cars/1
+GET {{host}}/api/cars/1
 
 ###
 
 ### Auto toevoegen (met geldig kenteken voor RDW validatie)
-POST https://localhost:7001/api/cars
+POST {{host}}/api/cars
 Content-Type: application/json
 
 {
@@ -35,7 +37,7 @@ Content-Type: application/json
 ###
 
 ### Auto toevoegen (fout: ongeldig kenteken → wordt geweigerd)
-POST https://localhost:7001/api/cars
+POST {{host}}/api/cars
 Content-Type: application/json
 
 {
@@ -47,7 +49,7 @@ Content-Type: application/json
 ###
 
 ### Auto bijwerken: uitlenen aan persoon
-PUT https://localhost:7001/api/cars/5
+PUT {{host}}/api/cars/5
 Content-Type: application/json
 
 {
@@ -58,7 +60,7 @@ Content-Type: application/json
 ###
 
 ### Auto bijwerken: terugbrengen
-PUT https://localhost:7001/api/cars/5
+PUT {{host}}/api/cars/5
 Content-Type: application/json
 
 {
@@ -68,7 +70,7 @@ Content-Type: application/json
 ###
 
 ### Auto bijwerken: status naar Verkocht
-PUT https://localhost:7001/api/cars/10
+PUT {{host}}/api/cars/10
 Content-Type: application/json
 
 {
@@ -79,7 +81,7 @@ Content-Type: application/json
 ###
 
 ### Auto bijwerken: opmerking toevoegen + kleur wijzigen
-PUT https://localhost:7001/api/cars/3
+PUT {{host}}/api/cars/3
 Content-Type: application/json
 
 {
@@ -90,7 +92,7 @@ Content-Type: application/json
 ###
 
 ### Probeer status wijzigen van een verkochte auto (mislukt)
-PUT https://localhost:7001/api/cars/10
+PUT {{host}}/api/cars/10
 Content-Type: application/json
 
 {
